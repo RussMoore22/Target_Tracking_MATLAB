@@ -67,9 +67,9 @@ end
 
 
 
-for i = 1:imageNumber
+for i = [6,10]
     imshow(imresize(boxArray(:,:,i), [1000,1000]));
-    pause(.1);
+    pause(10);
 end
 
 
