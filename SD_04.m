@@ -26,7 +26,7 @@ for i = 2:imageNumber
     im3DArrayDiff = stackArrays(im3DArrayDiff, imresize(imfuse(canvas, im3DArray(:,:,i), "diff"), [100,100]), i);
 end
 
-
+%THIS IS A COMMENT
 
 im3DArrayBin = getBinImage(im3DArrayDiff(:,:,1));
 
