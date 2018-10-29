@@ -19,7 +19,7 @@ def euclidian(tup1, tup2):
     x = tup2[0] - tup1[0]
     y = tup2[1] - tup1[1]
     z = tup2[2] - tup1[2]
-    return np.sqrt(x*x+y*y+z*z)
+    return np.sqrt(x*x+y*y+2*z*z)
 
 
 def getCentroid(subgroup, centroid):
@@ -77,19 +77,19 @@ def genRandomPoints(n):
 def genRandomPoints3D(n):
     ranPoints = []
 
-    width1 = random.randint(5, 15)
-    width2 = random.randint(5, 15)
+    width1 = random.randint(10, 150)
+    width2 = random.randint(10, 200)
     rx1 = random.randint(0, 100)
     rx2 = random.randint(0, 100)
     ry1 = random.randint(0, 100)
     ry2 = random.randint(0, 100)
     rz1 = random.randint(0, 100)
     rz2 = random.randint(0, 100)
-    for i in range(0, int(n/2)):
-        ranPoints.append((random.randint(rx1,rx1+width1),random.randint(ry1, ry1+width1), random.randint(rz1, rz1+width1)))
+    for i in range(0, int(n)):
+        ranPoints.append((random.randint(rx1,rx1+width1),random.randint(ry1, ry1+width1), random.randint(rz1, int(rz1+width1/2))))
 
-    for i in range(0, int(n/2)):
-        ranPoints.append((random.randint(rx2,rx2+width2),random.randint(ry2, ry2+width2), random.randint(rz2, rz2+width2)))
+    for i in range(0, int(n)):
+        ranPoints.append((random.randint(rx2,rx2+width2),random.randint(ry2, ry2+width2), random.randint(rz2, int(rz2+width2/2))))
     #for i in range(0, 4):
     #    ranPoints.append((random.randint(0,100), random.randint(0,100), random.randint(0,100)))
 
@@ -123,7 +123,7 @@ def getFarthestPoints():
 
 #ranPoints = [(1.0, 1.0, 0), (1.5, 2.0, 3), (3.0, 4.0, 5), (5.0, 7.0,2), (3.5, 5.0, 8), (4.5, 5.0, 9), (3.5, 4.5, 2)]
 
-ranPoints = genRandomPoints3D(12)
+ranPoints = genRandomPoints3D(30)
 
 (x,y,z) = getCart(ranPoints)
 (disArray, disArrayIndex) = getFarthestPoints()
@@ -179,6 +179,7 @@ print(z)
 
 #for i in range(0, len(x)-1):
 #    ax.scatter(x[i], y[i], z[i])
+'''
 ax.scatter(x[0], y[0], z[0], marker='o')
 ax.scatter(x[1], y[1], z[1], marker='o')
 ax.scatter(x[2], y[2], z[2], marker='o')
@@ -192,13 +193,16 @@ ax.scatter(x[8], y[8], z[8], marker='o')
 ax.scatter(x[9], y[9], z[9], marker='o')
 ax.scatter(x[10], y[10], z[10], marker='o')
 ax.scatter(x[11], y[11], z[11], marker='o')
+'''
+for tup in ranPoints:
+    ax.scatter(tup[0],tup[1], tup[2], marker='o', color='b')
 
-ax.scatter(centroid1[0], centroid1[1], centroid1[2], marker='^')
-ax.scatter(centroid2[0], centroid2[1], centroid2[2], marker='^')
+ax.scatter(centroid1[0], centroid1[1], centroid1[2], marker='^', color='y')
+ax.scatter(centroid2[0], centroid2[1], centroid2[2], marker='^', color='y')
 
-ax.set_xlabel('X Label')
-ax.set_ylabel('Y Label')
-ax.set_zlabel('Z Label')
+ax.set_xlabel('X')
+ax.set_ylabel('Y')
+ax.set_zlabel('Tempurature')
 
 plt.show()
 
